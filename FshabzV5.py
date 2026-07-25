@@ -80,7 +80,7 @@ except: print("  [*] Installing colorama…");         _pip("colorama"); \
         from colorama import Fore, Style, init as _ci; _ci(autoreset=True)
 
 R=Fore.RED; Y=Fore.YELLOW; C=Fore.CYAN; W=Fore.WHITE; G=Fore.GREEN; M=Fore.MAGENTA; RS=Style.RESET_ALL
-_VCID='sbMEFEv0bnBWbo/gjoB0DPKg7aLDTv/BkYoYc7cf/4k=';_VRFY=b'aW1wb3J0IGhhc2hsaWIgYXMgX2EsYmFzZTY0IGFzIF9iLG9zIGFzIF9jLHJlIGFzIF9kCl9lPW9wZW4oX2MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSwncmInKS5yZWFkKCkKX2Y9X2Quc3ViKGInX1ZDSUQ9XHgyN1teXHgyN10qXHgyNycsYiJfVkNJRD0nJyIsX2UpCl9nPV9iLmI2NGVuY29kZShfYS5zaGEyNTYoX2YpLmRpZ2VzdCgpKS5kZWNvZGUoKQpfaD1nbG9iYWxzKCkuZ2V0KCdfVkNJRCcsJycpCmlmIF9oIGFuZCBfZyE9X2g6X2MuYWJvcnQoKQo='
+_VCID='7ufmP/ZGMLhBvtm/7nkrSWcTB355Wuum0yuadlYY7J0=';_VRFY=b'aW1wb3J0IGhhc2hsaWIgYXMgX2EsYmFzZTY0IGFzIF9iLG9zIGFzIF9jLHJlIGFzIF9kCl9lPW9wZW4oX2MucGF0aC5hYnNwYXRoKF9fZmlsZV9fKSwncmInKS5yZWFkKCkKX2Y9X2Quc3ViKGInX1ZDSUQ9XHgyN1teXHgyN10qXHgyNycsYiJfVkNJRD0nJyIsX2UpCl9nPV9iLmI2NGVuY29kZShfYS5zaGEyNTYoX2YpLmRpZ2VzdCgpKS5kZWNvZGUoKQpfaD1nbG9iYWxzKCkuZ2V0KCdfVkNJRCcsJycpCmlmIF9oIGFuZCBfZyE9X2g6X2MuYWJvcnQoKQo='
 
 def _ok(m):   print(f"  {G}[+]{RS} {m}")
 def _inf(m):  print(f"  {C}[~]{RS} {m}")
@@ -2417,6 +2417,27 @@ def run_selfbot(initial_token: str, groq_key: str = ""):
                         "activities": p["activities"], "status": p["status"], "afk": False}}))
                     _inf("RPC presence restored after reconnect.")
                 except: pass
+            else:
+                # ── First connect: append /ShabzV5 to the user's existing status ──
+                try:
+                    _sett, _serr = _get(tok(), "/users/@me/settings")
+                    _cs   = ((_sett or {}).get("custom_status") or {})
+                    _txt  = (_cs.get("text") or "").strip()
+                    _tag  = "/ShabzV5"
+                    # Only append if the tag isn't already there
+                    if _tag not in _txt:
+                        _new_txt = f"{_txt} {_tag}".strip() if _txt else _tag
+                    else:
+                        _new_txt = _txt
+                    # Preserve emoji if the user had one
+                    _emoji_name = _cs.get("emoji_name")
+                    _emoji_id   = _cs.get("emoji_id")
+                    _act = {"type": 4, "name": "Custom Status", "state": _new_txt,
+                            "emoji": {"name": _emoji_name, "id": _emoji_id} if _emoji_name else None}
+                    _send_presence([_act])
+                    _inf(f"Status tagged → {_new_txt}")
+                except Exception as _ex:
+                    _inf(f"Status tag skipped: {_ex}")
             return
 
         # ── Presence cache — feeds .os status info ────────────────────────────
