@@ -35,6 +35,7 @@ But dont worry after resetting discord will immediately remove your violations.
 because this selfbot uses a safety feature when limited it will automatically disconnect and discord will think they made a mistake 
 and automatically lift the limitation.
 So THEREFORE I will Recommend You Get Control Of Your Email.
+**Disclaimer** Never Try To Edit Or Steal The SB It Is Securely HaskLocked Meaning Trying To Steal Or Edit Will Result In A Immediate Crash.
 Sincerely,
 Developer - Shabz
 Discord User - @8c9p OR @itsfurinaa.
