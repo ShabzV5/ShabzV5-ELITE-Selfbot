@@ -1,0 +1,40 @@
+------------ABOUT SHABZV5 ULC.--------------
+
+The Safety & Worthyness. -
+
+ShabzV5 Is One Of The Elite Selfbot You Would Find On Discord. Its Built With Pure Hardwork.
+Its Built With Pure Intelligency By A 17 Year Old CYBER SECURITY.
+
+It Uses GROQ Api Key For AI - GROQ AI Is Hardcoded And Unrestricted,
+Meaning It Will Help You With Doxing,DDoSing,Rat Etc.
+It Introduces Itself As "Shabz AI" and It Also Uses Jailbreak Prompts With Godmode3 
+
+#**HOW IS IT SECURE AND UNDETECTABLE**
+
+It Is Secure And Undetectable Because It Uses- 
+Android client masquerade — Gateway IDENTIFY sends "os": "Android", "browser": "Discord Android", "device": "Android" instead of Python or a bot user-agent. Discord sees it as a phone.
+capabilities: 16381 — the exact bitmask a real Discord Android client sends. A bot or wrong value would look abnormal.
+REST User-Agent — all HTTP requests use a real browser UA (Mozilla/5.0 (Windows NT 10.0; Win64; x64)…) instead of anything Python-flavored.
+Gateway v9 — connects to wss://gateway.discord.gg/?v=9&encoding=json, the current production gateway version that real clients use.
+
+Persistent TLS session — requests.Session() with keep-alive reuses the same underlying TCP/TLS connection, exactly like a browser would.
+Heartbeat thread — sends op 1 on the server's exact interval minus 1 second. Skipping or mistiming heartbeats is a classic selfbot tell.
+Reconnect on op 9 — invalid session opcode triggers a clean reconnect rather than crashing or hanging.
+Presence restored on every reconnect — status/activity is re-sent after each gateway reconnect so it never drops to "offline" in between.
+
+RATELIMIT_DELAY = 0.4s — baseline cooldown between rapid REST calls (bulk ops, DM loops, etc.).
+Per-command sleeps — different operations use tuned delays: 0.3s, 0.35s, 0.4s, 0.5s, 0.8s, 1.2s, 1.5s depending on how aggressive the action is.
+Bulk delete chunking — message deletes are split into 100-message chunks with delays between each, matching the API's actual bulk-delete limit.
+Retry on failure — failed requests back off with time.sleep(1) before retrying rather than hammering the endpoint.
+
+THEREFORE YOU CAN TRUST THIS SELFBOT FROM ANY DISCORD LIMITATIONS.
+
+**Warning** When Using This Selfbot Discord Might Password limit you Meaning It Will Limit You.
+Untill You Dont Reset Your Discord Password.
+But dont worry after resetting discord will immediately remove your violations.
+because this selfbot uses a safety feature when limited it will automatically disconnect and discord will think they made a mistake 
+and automatically lift the limitation.
+So THEREFORE I will Recommend You Get Control Of Your Email.
+Sincerely,
+Developer - Shabz
+Discord User - @8c9p OR @itsfurinaa.
